@@ -26,12 +26,16 @@ public class HotspotService extends Service {
     @Override
     public void onCreate(){
         Log.d(TAG,"onCreate executing");
-        wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
-
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(CONNECTIVITY_SERVICE);
     }
 
     @Override
     public int onStartCommand(Intent intent,int flags,int startId){
+        Log.d(TAG,"onStartCommand() executing");
+        if(connectivityManager.getActiveNetworkInfo().isConnected()){
+            
+        }
         return START_REDELIVER_INTENT;
     }
 
